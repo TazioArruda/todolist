@@ -27,8 +27,8 @@
 
 ## UseCases 
 
-    -- Criar usuário
-    -- Logar com o usuário 
+   [X] -- Criar usuário
+   [X]-- Logar com o usuário 
     
     -- Criar Lista personalizaa de tarefas 
     -- Excluir uma Lista 

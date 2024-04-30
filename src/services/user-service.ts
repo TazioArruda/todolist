@@ -1,15 +1,16 @@
 import { ParamsCreateUserDTO } from "../dto/create-user-dto";
 import bcrypt from "bcrypt"
+import { UserRepository } from "../repositories/use-repositories";
 
 
 export class UserService {
 
-    constructor(private repository: any){}
+    constructor(private repository: UserRepository){}
 
     async create(params: ParamsCreateUserDTO){
         // verificar se o email existe 
 
-        const userAlreadyExists = await this.repository.getByEmail(params)
+        const userAlreadyExists = await this.repository.getByEmail(params.email)
         if (userAlreadyExists){
             // lançar erro 
 
@@ -22,8 +23,8 @@ export class UserService {
 
         }
 
-        await this.repository.create(payload)
-
+        const user = await this.repository.create(payload)
+        return user
         // criptografar a senha 
 
 

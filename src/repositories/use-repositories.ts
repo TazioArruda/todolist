@@ -11,4 +11,8 @@ export class UserRepository {
      const user = await UserModel.create(params)
      return user
 }
+    async getById(id: string){
+        const user = await UserModel.findOne({id})
+        return user
+    }
 }
