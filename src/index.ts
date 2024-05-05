@@ -10,6 +10,7 @@ const port = process.env.PORT || 3333
 const server = express()
 
 server.use(express.json())
+server.use(express.static("uploads/"))
 server.use(routes)
 
 server.listen(port, () =>{

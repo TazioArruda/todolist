@@ -23,7 +23,7 @@ export class AuthService {
 
        /// ---------> Comparar a senha que o usuário enviou com a senha do banco de dados<---------- \\\\\\\
     const passwordIsValid = await bcrypt.compare(params.password, user.password as string)
-        if(passwordIsValid){
+        if(!passwordIsValid){
             throw new Error("Invalid e-mail/password")
         }
 
@@ -35,7 +35,7 @@ export class AuthService {
          */
         const token = jwt.sign({
             id: user.id, fullname: user.fullname},
-            process.env.SECRET_KEY as string,
+            process.env.SECRET_KAY as string,
             { expiresIn: "5m"}
             )
             return {token}

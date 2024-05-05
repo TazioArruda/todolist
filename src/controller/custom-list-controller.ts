@@ -13,7 +13,7 @@ const service = new CustomListService (customListRepository, userRepository)
 
 export async function createCustomListController(req:Request, res: Response) {
     try {
-        const{params, body} = req 
+        const{params, body, file} = req 
     const inputValidator = yup.object({
         title: yup.string().required(),
         description: yup.string().required(),
@@ -21,12 +21,17 @@ export async function createCustomListController(req:Request, res: Response) {
         imageBanner:yup.string().required()
 
     })
-    const data = {...params, ...body}
+    const data = { ...params, ...body, imageBanner: file?.filename}
     await inputValidator.validate(data)
     const result = await service.create(data)
     return res.status(StatusCode.CREATED).json(result)
 }   catch (err){
         return res.status(StatusCode.BAD_REQUEST).json({message: err.message})
+} 
 }
-    
+export async function destroyCustomListController(req: Request, res: Response){
+    const { params} = req
+    const result = await service.destroy(params as any)
+    return res.json(result)
+
 }

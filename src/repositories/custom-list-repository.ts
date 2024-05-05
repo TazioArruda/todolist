@@ -8,4 +8,13 @@ export class CustomListRepository {
         const customList = await CustomListModel.create(input)
         return customList
     }
+
+    async getById(id: string){
+        const customList = await CustomListModel.findById(id)
+        return customList
+    }
+
+    async remove(id: string){
+        await CustomListModel.deleteOne({id})
+    }
 }

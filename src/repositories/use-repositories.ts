@@ -12,7 +12,7 @@ export class UserRepository {
      return user
 }
     async getById(id: string){
-        const user = await UserModel.findOne({id})
+        const user = await UserModel.findById(id)
         return user
     }
 }
